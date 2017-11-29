@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Product</title>
+<style type="text/css">
+	h1 { color: blue; font-style: italic; }
+	body { font-family: times; }
+	th { text-align: left; }
+	#div1 { color: red; }
+</style>
+</head>
+
+<body bgcolor="#FDF5E6">
+<center>
+<h1>Add Product</h1>
+
+<!--start of "new_product_input" form-->
+<form name="new_product_input" onsubmit="return validate(this)">
+<!--start of table-->
+<table>
+	<tr><th>Product ID:</th><td><input type="text" name="product_id"></td></tr>
+	<tr><th>Category_1:</th><td>
+		<form>
+			<select name="category_1">
+				<option value="감미품" SELECTED>감미품
+				<option value="식품">식품
+				<option value="빙과">빙과
+				<option value="음료">음료
+				<option value="생활용품">생활용품
+			</select>
+		</form>
+	</td></tr>
+		<tr><th>Category_2:</th><td>
+		<form>
+			<select name="category_2">
+				<option value="c" SELECTED>C
+				<option value="c++">C++
+				<option value="java">Java
+				<option value="php">PHP
+				<option value="pascal">Pascal
+			</select>
+		</form>
+	</td></tr>
+	<tr><th>Product name:</th><td><input type="text" name="product_name"></td></tr>
+	<tr><th>Expire date:</th><td><input type="text" name="expire_date"></td></tr>
+	<tr><th>Price:</th><td><input type="text" name="price"></td></tr>
+</table>
+<!--end of table-->
+
+<div id="div1"></div>
+<p><input type="submit" value="Add Product"></p>
+</form>
+<!--start of "new_product_input" form-->
+
+<script src=".js"></script>
+<script>
+function validate(form) {
+	var div1 = document.getElementById("div1");
+	if () {
+		div1.innerHTML = "<p>NOTE: </p>";
+		return false;	//must return false.
+	}
+    if () {
+        div1.innerHTML = "<p>NOTE: </p>";
+        return false;	//must return false.
+    }
+    if () {
+        div1.innerHTML = "<p>NOTE: </p>";
+        return false;	//must return false.
+    }
+    return true;		//must return true if all elements are true. no need to use "else".
+}
+</script>
+
+</center>
+</body>
+</html>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "athens94";
+$database = "mydb"; // optional
+ 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+ 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+ 
+// Close connection
+$conn->close();
+?>
