@@ -29,7 +29,7 @@
   // 변수 page값에 따른 LIMIT의 첫번째 값 계산
   $firstLimitValue = ($numView * $page) - $numView;
 
-  $sql = "SELECT * FROM mymember LIMIT {$firstLimitValue}, {$numView}";
+  $sql = "SELECT * FROM product LIMIT {$firstLimitValue}, {$numView}";
   $result = $dbConnection->query($sql);
 ?>
 
