@@ -1,9 +1,47 @@
+<?php
+  $host = "localhost";
+  $user = "root";
+  $pw = "root";
+  $dbName = "myservice";
+  $dbConnection=new mysqli($host, $user, $pw, $dbName);
+  $dbConnection->set_charset("utf8");
+  //접속 확인
+
+  if(mysqli_connect_errno()){
+    echo "접속실패\n";
+    echo mysqli_connect_error();
+  }
+  else{
+    echo "접속성공\n";
+  }
+
+  //페이지 값을 구함
+  if(isset($_GET['page'])){
+    $page = (int) $_GET['page'];
+  }else{
+    //페이지 값이 없으면 1로 초기화
+    $page = 1;
+  }
+
+  // 페이지에 출력할 레코드 수
+  $numView = 50;
+
+  // 변수 page값에 따른 LIMIT의 첫번째 값 계산
+  $firstLimitValue = ($numView * $page) - $numView;
+
+  $sql = "SELECT * FROM mymember LIMIT {$firstLimitValue}, {$numView}";
+  $result = $dbConnection->query($sql);
+?>
+
+<!doctype html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>Product Manager</title>
 <style>
+table{font-size:15px}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -63,7 +101,7 @@ li.dropdown {
 <body>
 
 <ul>
-	<li><a href="admin_manager_accounts.html">Accounts</a></li>
+	<li><a href="admin_manager_accounts.php">Accounts</a></li>
 	<li><a class="active_selected">Products</a></li>
 	<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">Add Product</a>
@@ -79,33 +117,34 @@ li.dropdown {
   
 </ul>
 
+<br>
+<h3 align = "center">Products</h3>
+  <table width="100%" bgcolor="skyblue" cellspacing="1">
+    <tr bgcolor="white" align="center">
+      <td>Product ID</td>
+      <td>Category_1</td>
+      <td>Category_2</td>
+      <td>Product Name</td>
+      <td>Days before Expire</td>
+      <td>like_hate</td>
+    </tr>
+
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "athens94";
-$dbname = "MYPROD";
+  for($i = 0; $i < $result->num_rows; $i++){
+    $member = $result->fetch_array(MYSQLI_ASSOC);
+?>
+      <tr bgcolor="white" align="center">
+			<td><?=$member['id']?></td>
+			<td><?=$member['cate1']?></td>
+			<td><?=$member['cate2']?></td>
+			<td><?=$member['name']?></td>
+			<td><?=$member['expiry_day']?></td>
+			<td><?=$member['price']?></td>
+			<td><?=$member['like_hate']?></td>
+		  
+      </tr>
+<?php } ?>
+  </table>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-$sql = "SELECT * from product";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<br> id: ". $row["id"]. " - ". $row["cate1"]. " " . $row["cate2"] ." ".$row["name"]
-		  ." ".$row["expiry_day"]." ".$row["price"]." ".$row["like_hate"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-
-$conn->close();
-?> 
 </body>
 </html>
