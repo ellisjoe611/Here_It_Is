@@ -84,7 +84,7 @@ span.psw {
 <body>
 <h2 align="center">Administrator Log-in</h2>
 
-<form action="login.php">
+<form action="admin_login_process.php">
 	<div class="imgcontainer">
 		<img src="https://avidplus.co.nz/avid_img/services/avp-Administration.png" width="10%" height="10%" alt="Avatar" class="avatar">
 	</div>

@@ -75,7 +75,7 @@ li.dropdown {
 			<a href="admin_add_households.html">생활용품</a>
 		</div>
 	</li>
-	<li style="float:right"><a class="active_logout" href="logout.php">Sign Out</a></li>
+	<li style="float:right"><a class="active_logout" href="admin_logout_process.php">Sign Out</a></li>
   
 </ul>
 

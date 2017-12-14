@@ -75,9 +75,37 @@ li.dropdown {
 			<a href="admin_add_households.html">생활용품</a>
 		</div>
 	</li>
-	<li style="float:right"><a class="active_logout" href="logout.php">Sign Out</a></li>
+	<li style="float:right"><a class="active_logout" href="admin_logout_process.php">Sign Out</a></li>
   
 </ul>
 
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "athens94";
+$dbname = "MYPROD";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * from product";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> id: ". $row["id"]. " - ". $row["cate1"]. " " . $row["cate2"] ." ".$row["name"]
+		  ." ".$row["expiry_day"]." ".$row["price"]." ".$row["like_hate"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?> 
 </body>
 </html>
