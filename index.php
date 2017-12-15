@@ -1,25 +1,24 @@
 
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'].'/myservice/common/session.php';
-    if(isset($_SESSION['myMemberSes'])){
-        header("Location:./memberPage.php");
-        exit;
-    }
-    $host = "localhost";
-    $user = "root";
-    $pw = "root";
-    $dbName = "myservice";
-    $dbConnection=new mysqli($host, $user, $pw, $dbName);
-    $dbConnection->set_charset("utf8");
-    //접속 확인
+include_once $_SERVER['DOCUMENT_ROOT'] . '/myservice/common/session.php';
+if (isset($_SESSION['myMemberSes'])) {
+    header("Location:./memberPage.php");
+    exit ;
+}
+$host = "localhost";
+$user = "root";
+$pw = "root";
+$dbName = "myservice";
+$dbConnection = new mysqli($host, $user, $pw, $dbName);
+$dbConnection -> set_charset("utf8");
+//접속 확인
 
-    if(mysqli_connect_errno()){
-      echo "접속실패\n";
-      echo mysqli_connect_error();
-    }
-    else{
-      echo "접속성공\n";
-    }
+if (mysqli_connect_errno()) {
+    echo "접속실패\n";
+    echo mysqli_connect_error();
+} else {
+    echo "접속성공\n";
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,18 +37,17 @@
 <link href="css/style.css" rel="stylesheet">
 <!-- 즐겨찾기 버튼-->
 <script>
-  $(document).ready(function(){
-    $("#empty").click(function(){
-      $("#empty").hide();
-      $("#fill").show();
-    });
-    $("#fill").click(function(){
-      $("#fill").hide();
-      $("#empty").show();
-    });
-  });
+	$(document).ready(function() {
+		$("#empty").click(function() {
+			$("#empty").hide();
+			$("#fill").show();
+		});
+		$("#fill").click(function() {
+			$("#fill").hide();
+			$("#empty").show();
+		});
+	});
 </script>
-
 
 </head>
 <body>
@@ -142,21 +140,20 @@
       echo '<div class="row">';
       }?>
 		<div class="col-md-3">
-      <?$photo=$product['productPhoto']?>
-			<a href="#" data-toggle="modal" data-target="#imageModal" data-whatever="<?=$photo?>"><img src="<?=$photo?>"
-				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-      <h5>품명 : <?=$product['name']?></h5>
-			<h5>가격 : <?=$product['price']?></h5>
-      <h5>상품코드 : <?=$product['id']?>
+			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>" class="img-responsive img-thumbnail" alt="Responsive image"></a>
+      <h5>품명 : <?=$product['name'] ?></h5>
+	<h5>가격 : <?=$product['price'] ?></h5>
+      <h5>상품코드 : <?=$product['id'] ?>
       <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate']?></span>
+      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
     </h5>
     </div>
-  <?php $rown++; $total++;
-  if($rown==4){
-    echo '</div>';
-    $rown=0;
-  }} ?>
+  <?php $rown++;
+        if ($rown == 4) {
+            echo '</div>';
+            $rown = 0;
+        }}
+ ?>
   </div>
 </div>
 
@@ -179,18 +176,21 @@
   <!-- Content -->
 
     <div class="col-md-3">
-      <?$photo=$product['productPhoto']?>
-      <a href="#" data-toggle="modal" data-target="#imageModal" data-whatever="<?=$photo?>"><img src="<?=$photo?>"
+      <a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
         class="img-responsive img-thumbnail" alt="Responsive image"></a>
-      <h5>품명 : <?=$product['name']?></h5>
-      <h5>가격 : <?=$product['price']?></h5>
-      <h5>상품코드 : <?=$product['id']?></h5>
+      <h5>품명 : <?=$product['name'] ?></h5>
+      <h5>가격 : <?=$product['price'] ?></h5>
+      <h5>상품코드 : <?=$product['id'] ?>  
+      <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
+    </h5>
     </div>
-    <?php $rown++; $total++;
-    if($rown==4){
-      echo '</div>';
-      $rown=0;
-    }} ?>
+    <?php $rown++;
+        if ($rown == 4) {
+            echo '</div>';
+            $rown = 0;
+        }}
+ ?>
 </div>
 </div>
  <div id="Ice" class="tab-pane fade">
@@ -211,17 +211,21 @@
 
   		<div class="col-md-3">
         <?$photo=$product['productPhoto']?>
-  			<a href="#" data-toggle="modal" data-target="#imageModal" data-whatever="<?=$photo?>"><img src="<?=$photo?>"
+  			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
   				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-        <h5>품명 : <?=$product['name']?></h5>
-  			<h5>가격 : <?=$product['price']?></h5>
-        <h5>상품코드 : <?=$product['id']?></h5>
+        <h5>품명 : <?=$product['name'] ?></h5>
+  			<h5>가격 : <?=$product['price'] ?></h5>
+        <h5>상품코드 : <?=$product['id'] ?>  
+         <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
+    </h5>
       </div>
-        <?php $rown++; $total++;
-        if($rown==4){
-          echo '</div>';
-          $rown=0;
-        }} ?>
+        <?php $rown++;
+        if ($rown == 4) {
+            echo '</div>';
+            $rown = 0;
+        }}
+ ?>
     </div>
   </div>
     <div id="Drink" class="tab-pane fade">
@@ -243,17 +247,21 @@
 
     		<div class="col-md-3">
           <?$photo=$product['productPhoto']?>
-    			<a href="#" data-toggle="modal" data-target="#imageModal" data-whatever="<?=$photo?>"><img src="<?=$photo?>"
+    			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
     				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <h5>품명 : <?=$product['name']?></h5>
-    			<h5>가격 : <?=$product['price']?></h5>
-          <h5>상품코드 : <?=$product['id']?></h5>
+          <h5>품명 : <?=$product['name'] ?></h5>
+    	<h5>가격 : <?=$product['price'] ?></h5>
+          <h5>상품코드 : <?=$product['id'] ?>  
+              <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
+    </h5>
         </div>
-          <?php $rown++; $total++;
-          if($rown==4){
-            echo '</div>';
-            $rown=0;
-          }} ?>
+          <?php $rown++;
+            if ($rown == 4) {
+                echo '</div>';
+                $rown = 0;
+            }}
+ ?>
       </div>
     </div>
     <div id="Daily" class="tab-pane fade">
@@ -275,17 +283,21 @@
 
       		<div class="col-md-3">
             <?$photo=$product['productPhoto']?>
-      			<a href="#" data-toggle="modal" data-target="#imageModal" data-whatever="<?=$photo?>"><img src="<?=$photo?>"
+      			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
       				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-            <h5>품명 : <?=$product['name']?></h5>
-      			<h5>가격 : <?=$product['price']?></h5>
-            <h5>상품코드 : <?=$product['id']?></h5>
+            <h5>품명 : <?=$product['name'] ?></h5>
+      			<h5>가격 : <?=$product['price'] ?></h5>
+            <h5>상품코드 : <?=$product['id'] ?>  
+                <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
+    </h5>
           </div>
-            <?php $rown++; $total++;
-            if($rown==4){
-              echo '</div>';
-              $rown=0;
-            }} ?>
+            <?php $rown++;
+            if ($rown == 4) {
+                echo '</div>';
+                $rown = 0;
+            }}
+ ?>
         </div>
       </div>
 	<!--/ Content -->
@@ -321,30 +333,13 @@
 			<div class="modal-body">
 
         <!--photo-->
-				<img src="" class="img-responsive img-thumbnail" alt="Responsive image" onClick="javascript:$('#imageModal').modal('hide');">
+				<img src="" class="img-responsive img-thumbnail" alt="Responsive image">
         <br/><br/>
 
-        <!--comment-->
-        <form  id="comment" method="post" action="commet목적지">
-          <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment" placeholder="comments.."></textarea>
-          </div>
-          <input type="button" class="btn btn-default" id="commentBtn" value="write"/>
-        </form>
-        <hr>
-
-        <div class="media">
-          <div class="media-left">
-            <img src="img_avatar1.png" class="media-object" style="width:60px">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Left-aligned  <small><i>Posted on February 19, 2016</i></small></h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
+      
+        <div class="myCommentArea" id="center">
         </div>
-        <hr>
-
+        
 			</div>
 		</div>
 	</div>
@@ -423,10 +418,8 @@
         $nowYear = date("Y",time());
         //현재 연도부터 1900년도까지 내림차순으로 option태그 생성
         for($i = $nowYear; $i >= 1900; $i--){?>
-                      <option value="<?=$i?>"><?=$i?></option>
-      <?php
-        }
-      ?>
+                      <option value="<?=$i ?>"><?=$i ?></option>
+      <?php } ?>
                     </select>
                   </div>
 
@@ -435,10 +428,8 @@
                       <option value="">월</option>
       <?php
         for($i = 1; $i <= 12; $i++){?>
-                      <option value="<?=$i?>"><?=$i?></option>
-      <?php
-        }
-      ?>
+                      <option value="<?=$i ?>"><?=$i ?></option>
+      <?php } ?>
                     </select>
                   </div>
                   <div class="selectBox">
@@ -446,10 +437,8 @@
                       <option value="">일</option>
       <?php
         for($i = 1; $i <= 31; $i++){?>
-                      <option value="<?=$i?>"><?=$i?></option>
-      <?php
-        }
-      ?>
+                      <option value="<?=$i ?>"><?=$i ?></option>
+      <?php } ?>
                     </select>
                   </div>
                 </div>
@@ -483,25 +472,99 @@
 
 <!-- side nav bar-->
 <script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
 </script>
 
 <script type="text/javascript">
 	$('#imageModal').on('show.bs.modal', function(event) {
-		var link = $(event.relatedTarget); // Button that triggered the modal
-		var recipient = link.data('whatever'); // Extract info from data-* attributes
+		var link = $(event.relatedTarget);
+		// Button that triggered the modal
+		var recipient = link.data('whatever');
+		var product_id = link.data('name');
+
+		// Extract info from data-* attributes
 		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		var modal = $(this);
 		modal.find('.modal-body img').attr("src", recipient);
 		modal.find('.modal-body img').attr("width", 800);
+		modal.find('.modal-body input').attr("id", product_id);
+
+         $.ajax({
+                    type : 'post',
+                    dataType : 'json',
+                    url : './database/contents.php',
+                    data : {mode : 'onlyComment', productID : product_id},
+                    async : false,
+                    success : function(data) {
+                        console.log(data);
+                        //데이터 불러오기 성공시
+                        if (data.result == true) {
+                            //게시물을 변수에 대입
+                            var comments = data.content;
+                            console.log('contents is ' + JSON.stringify(comments));
+
+                           console.log('comment is ' + JSON.stringify(comments['comment']));
+   
+                            //게시물 데이터 id가 center인 엘리먼트에 넣기 위해
+                            //게시물의 HTML 태그를 만듬
+
+                            
+                            //생성할 HTML코드를 대입할 변수 선언
+                            var inputHtml = "";
+                                for (var comment in comments) {
+                        
+                                    inputHtml += "<div class='media'>";
+                                    //inputHtml += "<img src=' " + comments[comment]['profilePhoto'] + "' />";
+                                    //타임스탬프 시간을 사람이 이해 할 수 있는 시간으로 변경
+                                    var d = new Date(comments[comment]['regTime'] * 1000);
+
+                                    //getMonth()는 0부터 시작하므로 1을 더해야 함 예로 11월은 10으로 보여줌 그러므로 +1
+                                    var month = d.getMonth() + 1;
+                                    //시간 만들기
+                                    var regTime = d.getFullYear() + '년 ' + month + '월 ' + d.getDate() + '일 ' + d.getHours() + '시 ' + d.getMinutes() + '분';
+
+                                    //사용자가 내용에 태그 입력시를 대비해서 특수기호를 HTML 코드로 변경
+                                    bbs2 = comments[comment]['comment'];
+                                    bbs = bbs2.replace(/</g, '&lt;');
+                                    bbs = bbs2.replace(/>/g, '&gt;');
+
+                                    inputHtml += "<div class='media-body' id='" + comments[comment]['contentsID'] + "'>";
+                                    inputHtml += "<h4 class='media-heading'>" + comments[comment]['userName'] + "<small><i>  " + regTime + "</i></small></h4>";
+                                    inputHtml += "<p>" + bbs2 + "</p>";
+                                    inputHtml += "</div></div></hr>";
+                                    
+                                }
+                                //댓글 영역 끝
+                           
+
+                            //위에서 완성된 HTML 코드를 id가 container인 엘리먼트에 넣음
+                            $('.myCommentArea').append(inputHtml);
+                            
+                       
+                        }else{
+                            alert('댓글 불러오기 실패');
+                        }
+                    },
+                    error : function(request, status, error) {
+                        console.log('request ' + JSON.stringify(request));
+                        console.log('status ' + status);
+                        console.log('error ' + error);
+                    }
+                });        
+                
 	});
+	 $("#imageModal").on('hide.bs.modal', function () {
+                      $(".myCommentArea").empty();
+
+            });
+	
 </script>
 <!--/ Modal -->
 
