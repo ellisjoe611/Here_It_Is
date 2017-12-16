@@ -131,7 +131,7 @@ if (mysqli_connect_errno()) {
   <?php
         $rown=0;
         $CT = 10;
-        $sql = "SELECT * FROM product where id like '$CT%' ";
+        $sql = "SELECT * FROM product where p_id like '$CT%' ";
         $result = $dbConnection->query($sql);
 
     for($i = 0; $i < $result->num_rows; $i++){
@@ -140,17 +140,37 @@ if (mysqli_connect_errno()) {
       echo '<div class="row">';
       }?>
 		<div class="col-md-3">
-			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>" class="img-responsive img-thumbnail" alt="Responsive image"></a>
-      <h5>품명 : <?=$product['name'] ?></h5>
-	<h5>가격 : <?=$product['price'] ?></h5>
-      <h5>상품코드 : <?=$product['id'] ?>
+			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+        class="img-responsive img-thumbnail" alt="Responsive image"></a>
+      <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+        <tbody>
+        <tr bgcolor="white" align="center">
+          <td>품명</td>
+          <td><?=$product['name'] ?></td>
+        </tr>
+        <tr bgcolor="white" align="center">
+          <td>가격</td>
+          <td><?=$product['price'] ?></td>
+        </tr>
+        <tr bgcolor="white" align="center">
+          <td>재고</td>
+          <td><?=$product['p_num'] ?></td>
+        </tr>
+      </tbody>
+      </table>
       <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
-    </h5>
+      <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+      <tbody>
+      <tr bgcolor="lightblue" align="center">
+      <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
+      <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+      </tr>
+    </tbody>
+    </table>
     </div>
   <?php $rown++;
         if ($rown == 4) {
-            echo '</div>';
+            echo '</div></br>';
             $rown = 0;
         }}
  ?>
@@ -165,7 +185,7 @@ if (mysqli_connect_errno()) {
   <?php
         $rown=0;
         $CT = 20;
-        $sql = "SELECT * FROM product where id like '$CT%' ";
+        $sql = "SELECT * FROM product where p_id like '$CT%' ";
         $result = $dbConnection->query($sql);
 
     for($i = 0; $i < $result->num_rows; $i++){
@@ -176,14 +196,33 @@ if (mysqli_connect_errno()) {
   <!-- Content -->
 
     <div class="col-md-3">
-      <a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+      <a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
         class="img-responsive img-thumbnail" alt="Responsive image"></a>
-      <h5>품명 : <?=$product['name'] ?></h5>
-      <h5>가격 : <?=$product['price'] ?></h5>
-      <h5>상품코드 : <?=$product['id'] ?>  
-      <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
-    </h5>
+        <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+          <tbody>
+          <tr bgcolor="white" align="center">
+            <td>품명</td>
+            <td><?=$product['name'] ?></td>
+          </tr>
+          <tr bgcolor="white" align="center">
+            <td>가격</td>
+            <td><?=$product['price'] ?></td>
+          </tr>
+          <tr bgcolor="white" align="center">
+            <td>재고</td>
+            <td><?=$product['p_num'] ?></td>
+          </tr>
+        </tbody>
+        </table>
+        <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+        <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+        <tbody>
+        <tr bgcolor="lightblue" align="center">
+        <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
+        <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+        </tr>
+      </tbody>
+      </table>
     </div>
     <?php $rown++;
         if ($rown == 4) {
@@ -199,7 +238,7 @@ if (mysqli_connect_errno()) {
       <?php
           $rown=0;
           $CT = 30;
-          $sql = "SELECT * FROM product where id like '$CT%' ";
+          $sql = "SELECT * FROM product where p_id like '$CT%' ";
           $result = $dbConnection->query($sql);
 
       for($i = 0; $i < $result->num_rows; $i++){
@@ -211,14 +250,33 @@ if (mysqli_connect_errno()) {
 
   		<div class="col-md-3">
         <?$photo=$product['productPhoto']?>
-  			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+  			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
   				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-        <h5>품명 : <?=$product['name'] ?></h5>
-  			<h5>가격 : <?=$product['price'] ?></h5>
-        <h5>상품코드 : <?=$product['id'] ?>  
-         <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
-    </h5>
+          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+            <tbody>
+            <tr bgcolor="white" align="center">
+              <td>품명</td>
+              <td><?=$product['name'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>가격</td>
+              <td><?=$product['price'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>재고</td>
+              <td><?=$product['p_num'] ?></td>
+            </tr>
+          </tbody>
+          </table>
+          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          <tbody>
+          <tr bgcolor="lightblue" align="center">
+          <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
+          <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+          </tr>
+        </tbody>
+        </table>
       </div>
         <?php $rown++;
         if ($rown == 4) {
@@ -235,7 +293,7 @@ if (mysqli_connect_errno()) {
         <?php
             $rown=0;
             $CT=40;
-            $sql = "SELECT * FROM product where id like '$CT%' ";
+            $sql = "SELECT * FROM product where p_id like '$CT%' ";
             $result = $dbConnection->query($sql);
 
         for($i = 0; $i < $result->num_rows; $i++){
@@ -247,14 +305,33 @@ if (mysqli_connect_errno()) {
 
     		<div class="col-md-3">
           <?$photo=$product['productPhoto']?>
-    			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+    			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
     				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <h5>품명 : <?=$product['name'] ?></h5>
-    	<h5>가격 : <?=$product['price'] ?></h5>
-          <h5>상품코드 : <?=$product['id'] ?>  
-              <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
-    </h5>
+            <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+              <tbody>
+              <tr bgcolor="white" align="center">
+                <td>품명</td>
+                <td><?=$product['name'] ?></td>
+              </tr>
+              <tr bgcolor="white" align="center">
+                <td>가격</td>
+                <td><?=$product['price'] ?></td>
+              </tr>
+              <tr bgcolor="white" align="center">
+                <td>재고</td>
+                <td><?=$product['p_num'] ?></td>
+              </tr>
+            </tbody>
+            </table>
+            <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+            <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+            <tbody>
+            <tr bgcolor="lightblue" align="center">
+            <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
+            <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+            </tr>
+          </tbody>
+          </table>
         </div>
           <?php $rown++;
             if ($rown == 4) {
@@ -271,7 +348,7 @@ if (mysqli_connect_errno()) {
         <?php
               $rown=0;
               $CT = 50;
-              $sql = "SELECT * FROM product where id like '$CT%' ";
+              $sql = "SELECT * FROM product where p_id like '$CT%' ";
               $result = $dbConnection->query($sql);
 
           for($i = 0; $i < $result->num_rows; $i++){
@@ -283,14 +360,33 @@ if (mysqli_connect_errno()) {
 
       		<div class="col-md-3">
             <?$photo=$product['productPhoto']?>
-      			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+      			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
       				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-            <h5>품명 : <?=$product['name'] ?></h5>
-      			<h5>가격 : <?=$product['price'] ?></h5>
-            <h5>상품코드 : <?=$product['id'] ?>  
-                <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span> <span class="badge"><?=$product['like_hate'] ?></span>
-    </h5>
+              <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+                <tbody>
+                <tr bgcolor="white" align="center">
+                  <td>품명</td>
+                  <td><?=$product['name'] ?></td>
+                </tr>
+                <tr bgcolor="white" align="center">
+                  <td>가격</td>
+                  <td><?=$product['price'] ?></td>
+                </tr>
+                <tr bgcolor="white" align="center">
+                  <td>재고</td>
+                  <td><?=$product['p_num'] ?></td>
+                </tr>
+              </tbody>
+              </table>
+              <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+              <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+              <tbody>
+              <tr bgcolor="lightblue" align="center">
+              <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
+              <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+              </tr>
+            </tbody>
+            </table>
           </div>
             <?php $rown++;
             if ($rown == 4) {
@@ -336,10 +432,10 @@ if (mysqli_connect_errno()) {
 				<img src="" class="img-responsive img-thumbnail" alt="Responsive image">
         <br/><br/>
 
-      
+
         <div class="myCommentArea" id="center">
         </div>
-        
+
 			</div>
 		</div>
 	</div>
@@ -511,15 +607,15 @@ if (mysqli_connect_errno()) {
                             console.log('contents is ' + JSON.stringify(comments));
 
                            console.log('comment is ' + JSON.stringify(comments['comment']));
-   
+
                             //게시물 데이터 id가 center인 엘리먼트에 넣기 위해
                             //게시물의 HTML 태그를 만듬
 
-                            
+
                             //생성할 HTML코드를 대입할 변수 선언
                             var inputHtml = "";
                                 for (var comment in comments) {
-                        
+
                                     inputHtml += "<div class='media'>";
                                     //inputHtml += "<img src=' " + comments[comment]['profilePhoto'] + "' />";
                                     //타임스탬프 시간을 사람이 이해 할 수 있는 시간으로 변경
@@ -539,15 +635,15 @@ if (mysqli_connect_errno()) {
                                     inputHtml += "<h4 class='media-heading'>" + comments[comment]['userName'] + "<small><i>  " + regTime + "</i></small></h4>";
                                     inputHtml += "<p>" + bbs2 + "</p>";
                                     inputHtml += "</div></div></hr>";
-                                    
+
                                 }
                                 //댓글 영역 끝
-                           
+
 
                             //위에서 완성된 HTML 코드를 id가 container인 엘리먼트에 넣음
                             $('.myCommentArea').append(inputHtml);
-                            
-                       
+
+
                         }else{
                             alert('댓글 불러오기 실패');
                         }
@@ -557,14 +653,14 @@ if (mysqli_connect_errno()) {
                         console.log('status ' + status);
                         console.log('error ' + error);
                     }
-                });        
-                
+                });
+
 	});
 	 $("#imageModal").on('hide.bs.modal', function () {
                       $(".myCommentArea").empty();
 
             });
-	
+
 </script>
 <!--/ Modal -->
 
