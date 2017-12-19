@@ -106,11 +106,11 @@ li.dropdown {
 	<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">Add Product</a>
 		<div class="dropdown-content">
-			<a href="admin_add_snacks.html">감미품</a>
-			<a href="admin_add_foods.html">식품</a>
-			<a href="admin_add_ices.html">빙과</a>
-			<a href="admin_add_drinks.html">음료</a>
-			<a href="admin_add_households.html">생활용품</a>
+			<a href="admin_add_snacks.php">감미품</a>
+			<a href="admin_add_foods.php">식품</a>
+			<a href="admin_add_ices.php">빙과</a>
+			<a href="admin_add_drinks.php">음료</a>
+			<a href="admin_add_households.php">생활용품</a>
 		</div>
 	</li>
 	<li style="float:right"><a class="active_logout" href="admin_logout_process.php">Sign Out</a></li>
