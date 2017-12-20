@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 16, 2017 at 11:30 AM
--- Server version: 5.6.34-log
--- PHP Version: 7.1.5
+-- Host: 127.0.0.1
+-- 생성 시간: 17-12-19 23:32
+-- 서버 버전: 10.1.28-MariaDB
+-- PHP 버전: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myservice`
+-- 데이터베이스: `myservice`
 --
-USE MYSERVICE;
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- 테이블 구조 `comments`
 --
 
 CREATE TABLE `comments` (
@@ -37,7 +37,7 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='댓글';
 
 --
--- Dumping data for table `comments`
+-- 테이블의 덤프 데이터 `comments`
 --
 
 INSERT INTO `comments` (`commentsID`, `contentsID`, `myMemberID`, `comment`, `regTime`) VALUES
@@ -47,12 +47,13 @@ INSERT INTO `comments` (`commentsID`, `contentsID`, `myMemberID`, `comment`, `re
 (4, 30101, 1, 'dsaf', 1513415229),
 (5, 30102, 1, 'asdzxcv', 1513415233),
 (6, 30104, 1, 'asdzxxcv', 1513415237),
-(7, 10101, 1, '봐봐', 1513415293);
+(7, 10101, 1, '봐봐', 1513415293),
+(8, 10101, 10, ';kj;l', 1513428138);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- 테이블 구조 `contents`
 --
 
 CREATE TABLE `contents` (
@@ -63,7 +64,7 @@ CREATE TABLE `contents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='게시물';
 
 --
--- Dumping data for table `contents`
+-- 테이블의 덤프 데이터 `contents`
 --
 
 INSERT INTO `contents` (`contentsID`, `myMemberID`, `content`, `regTime`) VALUES
@@ -75,7 +76,7 @@ INSERT INTO `contents` (`contentsID`, `myMemberID`, `content`, `regTime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `likes`
+-- 테이블 구조 `likes`
 --
 
 CREATE TABLE `likes` (
@@ -86,18 +87,24 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='공감하기';
 
 --
--- Dumping data for table `likes`
+-- 테이블의 덤프 데이터 `likes`
 --
 
 INSERT INTO `likes` (`likesID`, `contentsID`, `myMemberID`, `regTime`) VALUES
 (1, 1, 1, 1512208973),
 (2, 3, 2, 1512209622),
-(20, 4, 1, 1513423383);
+(20, 4, 1, 1513423383),
+(56, 20201, 10, 1513446590),
+(63, 10105, 5, 1513520206),
+(71, 10101, 5, 1513520244),
+(148, 10205, 10, 1513597696),
+(205, 10101, 10, 1513720675),
+(226, 10102, 10, 1513721315);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mymember`
+-- 테이블 구조 `mymember`
 --
 
 CREATE TABLE `mymember` (
@@ -114,7 +121,7 @@ CREATE TABLE `mymember` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='회원 정보';
 
 --
--- Dumping data for table `mymember`
+-- 테이블의 덤프 데이터 `mymember`
 --
 
 INSERT INTO `mymember` (`myMemberID`, `userName`, `email`, `pw`, `birthDay`, `gender`, `class`, `profilePhoto`, `coverPhoto`, `regTime`) VALUES
@@ -132,7 +139,7 @@ INSERT INTO `mymember` (`myMemberID`, `userName`, `email`, `pw`, `birthDay`, `ge
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- 테이블 구조 `product`
 --
 
 CREATE TABLE `product` (
@@ -148,7 +155,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- 테이블의 덤프 데이터 `product`
 --
 
 INSERT INTO `product` (`p_id`, `p_num`, `cate1`, `cate2`, `name`, `expiry_day`, `price`, `like_hate`, `productPhoto`) VALUES
@@ -281,7 +288,7 @@ INSERT INTO `product` (`p_id`, `p_num`, `cate1`, `cate2`, `name`, `expiry_day`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_like`
+-- 테이블 구조 `product_like`
 --
 
 CREATE TABLE `product_like` (
@@ -291,7 +298,7 @@ CREATE TABLE `product_like` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product_like`
+-- 테이블의 덤프 데이터 `product_like`
 --
 
 INSERT INTO `product_like` (`pl_id`, `product`, `member`) VALUES
@@ -301,75 +308,80 @@ INSERT INTO `product_like` (`pl_id`, `product`, `member`) VALUES
 (5, 10102, 2);
 
 --
--- Indexes for dumped tables
+-- 덤프된 테이블의 인덱스
 --
 
 --
--- Indexes for table `comments`
+-- 테이블의 인덱스 `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`commentsID`);
 
 --
--- Indexes for table `contents`
+-- 테이블의 인덱스 `contents`
 --
 ALTER TABLE `contents`
   ADD PRIMARY KEY (`contentsID`);
 
 --
--- Indexes for table `likes`
+-- 테이블의 인덱스 `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`likesID`);
 
 --
--- Indexes for table `mymember`
+-- 테이블의 인덱스 `mymember`
 --
 ALTER TABLE `mymember`
   ADD PRIMARY KEY (`myMemberID`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `product`
+-- 테이블의 인덱스 `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`p_id`);
 
 --
--- Indexes for table `product_like`
+-- 테이블의 인덱스 `product_like`
 --
 ALTER TABLE `product_like`
   ADD PRIMARY KEY (`pl_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 덤프된 테이블의 AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- 테이블의 AUTO_INCREMENT `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentsID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '댓글 번호', AUTO_INCREMENT=8;
+  MODIFY `commentsID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '댓글 번호', AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `contents`
+-- 테이블의 AUTO_INCREMENT `contents`
 --
 ALTER TABLE `contents`
   MODIFY `contentsID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '게시물 번호', AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `likes`
+-- 테이블의 AUTO_INCREMENT `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likesID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '공감 번호', AUTO_INCREMENT=21;
+  MODIFY `likesID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '공감 번호', AUTO_INCREMENT=228;
+
 --
--- AUTO_INCREMENT for table `mymember`
+-- 테이블의 AUTO_INCREMENT `mymember`
 --
 ALTER TABLE `mymember`
   MODIFY `myMemberID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '고객번호', AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `product_like`
+-- 테이블의 AUTO_INCREMENT `product_like`
 --
 ALTER TABLE `product_like`
-  MODIFY `pl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;COMMIT;
+  MODIFY `pl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

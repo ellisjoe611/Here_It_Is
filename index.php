@@ -1,5 +1,6 @@
 
 <?php
+include("likefunction.php");
 include_once $_SERVER['DOCUMENT_ROOT'] . '/myservice/common/session.php';
 if (isset($_SESSION['myMemberSes'])) {
     header("Location:./memberPage.php");
@@ -35,19 +36,6 @@ if (mysqli_connect_errno()) {
 <link href="css/sticky-footer-navbar.css" rel="stylesheet">
 <!-- 예제에서 사용하기 위해 정의한 CSS -->
 <link href="css/style.css" rel="stylesheet">
-<!-- 즐겨찾기 버튼-->
-<script>
-	$(document).ready(function() {
-		$("#empty").click(function() {
-			$("#empty").hide();
-			$("#fill").show();
-		});
-		$("#fill").click(function() {
-			$("#fill").hide();
-			$("#empty").show();
-		});
-	});
-</script>
 
 </head>
 <body>
@@ -62,20 +50,6 @@ if (mysqli_connect_errno()) {
             <a class="navbar-brand" href="#">HERE IT IS</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="home.html">Home</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gallery <span
-                        class="caret"></span>
-                </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="photo.html">Photo</a></li>
-                        <li class="divider"></li>
-                        <li><a href="movie.html">Movie</a></li>
-                    </ul></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
 
             <ul class="nav navbar-nav navbar-right">
 
@@ -97,16 +71,46 @@ if (mysqli_connect_errno()) {
 <!--/ Top Menu(상단고정) -->
 
 <!-- Content -->
-<!-- Page Header -->
-<div class="book-page-header-photo">
-	<div class="page-header book-page-header">
-		<div class="container">
-			<h1>
-				Photo <br> <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>
-			</h1>
-		</div>
-	</div>
-</div>
+<!-- Page Header --> 
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <p style="text-align: center;">
+            <img src="/myservice/images/coca.jpg" alt="Coca cola" style="width:1200px; height:500px;">
+        </p>
+      </div>
+
+      <div class="item">
+          <p style="text-align: center;">
+              <img src="/myservice/images/shake.jpg" alt="Chicago" style="width:1200px; height:500px;">
+          </p>
+      </div>
+    
+      <div class="item">
+          <p style="text-align: center;">
+              <img src="/myservice/images/ghana.jpg" alt="New york" style="width:1200px; height:500px;">
+          </p>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 <!--/ Page Header -->
 
 <div class="container">
@@ -128,130 +132,21 @@ if (mysqli_connect_errno()) {
   <div class="tab-content">
   <div id="Snack" class="tab-pane fade in active">
     <!--살찌는거 출력하는곳-->
-  <?php
-        $rown=0;
-        $CT = 10;
-        $sql = "SELECT * FROM product where p_id like '$CT%' ";
-        $result = $dbConnection->query($sql);
-
-    for($i = 0; $i < $result->num_rows; $i++){
-      $product = $result->fetch_array(MYSQLI_ASSOC);
-      if($rown==0){
-      echo '<div class="row">';
-      }?>
-		<div class="col-md-3">
-			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-        class="img-responsive img-thumbnail" alt="Responsive image"></a>
-      <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-        <tbody>
-        <tr bgcolor="white" align="center">
-          <td>품명</td>
-          <td><?=$product['name'] ?></td>
-        </tr>
-        <tr bgcolor="white" align="center">
-          <td>가격</td>
-          <td><?=$product['price'] ?></td>
-        </tr>
-        <tr bgcolor="white" align="center">
-          <td>재고</td>
-          <td><?=$product['p_num'] ?></td>
-        </tr>
-      </tbody>
-      </table>
-      <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-      <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-      <tbody>
-      <tr bgcolor="lightblue" align="center">
-      <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
-      <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
-      </tr>
-    </tbody>
-    </table>
-    </div>
-  <?php $rown++;
-        if ($rown == 4) {
-            echo '</div></br>';
-            $rown = 0;
-        }}
- ?>
-  </div>
-</div>
-
-
-  <div id="Food" class="tab-pane fade">
-
-
-    <!--먹는거 출력하는곳--->
-  <?php
-        $rown=0;
-        $CT = 20;
-        $sql = "SELECT * FROM product where p_id like '$CT%' ";
-        $result = $dbConnection->query($sql);
-
-    for($i = 0; $i < $result->num_rows; $i++){
-      $product = $result->fetch_array(MYSQLI_ASSOC);
-      if($rown==0){
-      echo '<div class="row">';
-      }?>
-  <!-- Content -->
-
-    <div class="col-md-3">
-      <a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-        class="img-responsive img-thumbnail" alt="Responsive image"></a>
-        <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-          <tbody>
-          <tr bgcolor="white" align="center">
-            <td>품명</td>
-            <td><?=$product['name'] ?></td>
-          </tr>
-          <tr bgcolor="white" align="center">
-            <td>가격</td>
-            <td><?=$product['price'] ?></td>
-          </tr>
-          <tr bgcolor="white" align="center">
-            <td>재고</td>
-            <td><?=$product['p_num'] ?></td>
-          </tr>
-        </tbody>
-        </table>
-        <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-        <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-        <tbody>
-        <tr bgcolor="lightblue" align="center">
-        <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
-        <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
-    <?php $rown++;
-        if ($rown == 4) {
-            echo '</div>';
-            $rown = 0;
-        }}
- ?>
-</div>
-</div>
- <div id="Ice" class="tab-pane fade">
-
-      <!--차가워라 보여주기-->
-      <?php
-          $rown=0;
-          $CT = 30;
-          $sql = "SELECT * FROM product where p_id like '$CT%' ";
-          $result = $dbConnection->query($sql);
-
-      for($i = 0; $i < $result->num_rows; $i++){
-        $product = $result->fetch_array(MYSQLI_ASSOC);
-        if($rown==0){
-        echo '<div class="row">';
-        }?>
-  	<!-- Content -->
-
-  		<div class="col-md-3">
-        <?$photo=$product['productPhoto']?>
-  			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-  				class="img-responsive img-thumbnail" alt="Responsive image"></a>
+    <?php
+            $rown=0;
+            $CT = 10;
+            $sql = "SELECT * FROM product where p_id like '$CT%' ";
+            $result = $dbConnection->query($sql);
+        for($i = 0; $i < $result->num_rows; $i++){
+          $product = $result->fetch_array(MYSQLI_ASSOC);
+          if($rown==0){
+          echo '<div class="row">';
+          }
+          $count_like = count_content_like($dbConnection, $product['p_id']);
+          ?>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+            class="img-responsive img-thumbnail" alt="Responsive image"></a>
           <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
             <tbody>
             <tr bgcolor="white" align="center">
@@ -272,150 +167,239 @@ if (mysqli_connect_errno()) {
           <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
           <tbody>
           <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
-          <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
+          <td> 좋아요</td>
+          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
           </tr>
         </tbody>
         </table>
+        </div>
+      <?php $rown++;
+            if ($rown == 4) {
+                echo '</div></br>';
+                $rown = 0;
+            }}
+     ?>
       </div>
-        <?php $rown++;
-        if ($rown == 4) {
-            echo '</div>';
-            $rown = 0;
-        }}
- ?>
     </div>
-  </div>
-    <div id="Drink" class="tab-pane fade">
 
 
-        <!--마시자으아 보여주기-->
-        <?php
+  <div id="Food" class="tab-pane fade">
+
+
+    <!--먹는거 출력하는곳--->
+    <?php
             $rown=0;
-            $CT=40;
+            $CT = 20;
             $sql = "SELECT * FROM product where p_id like '$CT%' ";
             $result = $dbConnection->query($sql);
-
         for($i = 0; $i < $result->num_rows; $i++){
           $product = $result->fetch_array(MYSQLI_ASSOC);
           if($rown==0){
           echo '<div class="row">';
-          }?>
-    	<!-- Content -->
-
-    		<div class="col-md-3">
-          <?$photo=$product['productPhoto']?>
-    			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-    				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-            <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-              <tbody>
-              <tr bgcolor="white" align="center">
-                <td>품명</td>
-                <td><?=$product['name'] ?></td>
-              </tr>
-              <tr bgcolor="white" align="center">
-                <td>가격</td>
-                <td><?=$product['price'] ?></td>
-              </tr>
-              <tr bgcolor="white" align="center">
-                <td>재고</td>
-                <td><?=$product['p_num'] ?></td>
-              </tr>
-            </tbody>
-            </table>
-            <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-            <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          }
+          $count_like = count_content_like($dbConnection, $product['p_id']);
+          ?>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+            class="img-responsive img-thumbnail" alt="Responsive image"></a>
+          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
             <tbody>
-            <tr bgcolor="lightblue" align="center">
-            <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
-            <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
+            <tr bgcolor="white" align="center">
+              <td>품명</td>
+              <td><?=$product['name'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>가격</td>
+              <td><?=$product['price'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>재고</td>
+              <td><?=$product['p_num'] ?></td>
             </tr>
           </tbody>
           </table>
+          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          <tbody>
+          <tr bgcolor="lightblue" align="center">
+          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
+          <td> 좋아요</td>
+          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
+          </tr>
+        </tbody>
+        </table>
         </div>
-          <?php $rown++;
+      <?php $rown++;
             if ($rown == 4) {
-                echo '</div>';
+                echo '</div></br>';
                 $rown = 0;
             }}
- ?>
+     ?>
+      </div>
+    </div>
+ <div id="Ice" class="tab-pane fade">
+
+      <!--차가워라 보여주기-->
+       <?php
+            $rown=0;
+            $CT = 20;
+            $sql = "SELECT * FROM product where p_id like '$CT%' ";
+            $result = $dbConnection->query($sql);
+        for($i = 0; $i < $result->num_rows; $i++){
+          $product = $result->fetch_array(MYSQLI_ASSOC);
+          if($rown==0){
+          echo '<div class="row">';
+          }
+          $count_like = count_content_like($dbConnection, $product['p_id']);
+          ?>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+            class="img-responsive img-thumbnail" alt="Responsive image"></a>
+          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+            <tbody>
+            <tr bgcolor="white" align="center">
+              <td>품명</td>
+              <td><?=$product['name'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>가격</td>
+              <td><?=$product['price'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>재고</td>
+              <td><?=$product['p_num'] ?></td>
+            </tr>
+          </tbody>
+          </table>
+          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          <tbody>
+          <tr bgcolor="lightblue" align="center">
+          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
+          <td> 좋아요</td>
+          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      <?php $rown++;
+            if ($rown == 4) {
+                echo '</div></br>';
+                $rown = 0;
+            }}
+     ?>
+      </div>
+    </div>
+    <div id="Drink" class="tab-pane fade">
+
+
+        <!--마시자으아 보여주기-->
+         <?php
+            $rown=0;
+            $CT = 20;
+            $sql = "SELECT * FROM product where p_id like '$CT%' ";
+            $result = $dbConnection->query($sql);
+        for($i = 0; $i < $result->num_rows; $i++){
+          $product = $result->fetch_array(MYSQLI_ASSOC);
+          if($rown==0){
+          echo '<div class="row">';
+          }
+          $count_like = count_content_like($dbConnection, $product['p_id']);
+          ?>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+            class="img-responsive img-thumbnail" alt="Responsive image"></a>
+          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+            <tbody>
+            <tr bgcolor="white" align="center">
+              <td>품명</td>
+              <td><?=$product['name'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>가격</td>
+              <td><?=$product['price'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>재고</td>
+              <td><?=$product['p_num'] ?></td>
+            </tr>
+          </tbody>
+          </table>
+          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          <tbody>
+          <tr bgcolor="lightblue" align="center">
+          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
+          <td> 좋아요</td>
+          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      <?php $rown++;
+            if ($rown == 4) {
+                echo '</div></br>';
+                $rown = 0;
+            }}
+     ?>
       </div>
     </div>
     <div id="Daily" class="tab-pane fade">
 
 
           <!--입고 소비하자 으란ㅇ머리-->
-        <?php
-              $rown=0;
-              $CT = 50;
-              $sql = "SELECT * FROM product where p_id like '$CT%' ";
-              $result = $dbConnection->query($sql);
-
-          for($i = 0; $i < $result->num_rows; $i++){
-            $product = $result->fetch_array(MYSQLI_ASSOC);
-            if($rown==0){
-            echo '<div class="row">';
-            }?>
-      	<!-- Content -->
-
-      		<div class="col-md-3">
-            <?$photo=$product['productPhoto']?>
-      			<a href="#" data-toggle="modal" data-target="#imageModal" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-      				class="img-responsive img-thumbnail" alt="Responsive image"></a>
-              <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-                <tbody>
-                <tr bgcolor="white" align="center">
-                  <td>품명</td>
-                  <td><?=$product['name'] ?></td>
-                </tr>
-                <tr bgcolor="white" align="center">
-                  <td>가격</td>
-                  <td><?=$product['price'] ?></td>
-                </tr>
-                <tr bgcolor="white" align="center">
-                  <td>재고</td>
-                  <td><?=$product['p_num'] ?></td>
-                </tr>
-              </tbody>
-              </table>
-              <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-              <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-              <tbody>
-              <tr bgcolor="lightblue" align="center">
-              <td> <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-thumbs-up" ></button></span></td>
-              <td> <span class="badge"><?=$product['like_hate'] ?></span></td>
-              </tr>
-            </tbody>
-            </table>
-          </div>
-            <?php $rown++;
+         <?php
+            $rown=0;
+            $CT = 20;
+            $sql = "SELECT * FROM product where p_id like '$CT%' ";
+            $result = $dbConnection->query($sql);
+        for($i = 0; $i < $result->num_rows; $i++){
+          $product = $result->fetch_array(MYSQLI_ASSOC);
+          if($rown==0){
+          echo '<div class="row">';
+          }
+          $count_like = count_content_like($dbConnection, $product['p_id']);
+          ?>
+            <div class="col-md-3">
+                <a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
+            class="img-responsive img-thumbnail" alt="Responsive image"></a>
+          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
+            <tbody>
+            <tr bgcolor="white" align="center">
+              <td>품명</td>
+              <td><?=$product['name'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>가격</td>
+              <td><?=$product['price'] ?></td>
+            </tr>
+            <tr bgcolor="white" align="center">
+              <td>재고</td>
+              <td><?=$product['p_num'] ?></td>
+            </tr>
+          </tbody>
+          </table>
+          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
+          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
+          <tbody>
+          <tr bgcolor="lightblue" align="center">
+          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
+          <td> 좋아요</td>
+          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      <?php $rown++;
             if ($rown == 4) {
-                echo '</div>';
+                echo '</div></br>';
                 $rown = 0;
             }}
- ?>
-        </div>
+     ?>
       </div>
-	<!--/ Content -->
-
-	<!-- Pagination -->
-	<!-- <nav>
-
-		<ul class="pagination">
-			<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li><a href="#"<?$_POST['page']=1?>>1</a></li>
-			<li><a href="#"<?$_POST['page']=2?>>2</a></li>
-			<li><a href="#"<?$_POST['page']=3?>>3</a></li>
-			<li><a href="#"<?$_POST['page']=4?>>4</a></li>
-			<li><a href="#"<?$_POST['page']=5?>>5</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-
-	</nav> -->
-	<!--/ Pagination -->
-
+    </div>
+	
 
 </div>
 <!-- Content -->
@@ -631,7 +615,7 @@ if (mysqli_connect_errno()) {
                                     bbs = bbs2.replace(/</g, '&lt;');
                                     bbs = bbs2.replace(/>/g, '&gt;');
 
-                                    inputHtml += "<div class='media-body' id='" + comments[comment]['contentsID'] + "'>";
+                                    inputHtml += "<div class='media-body'>";
                                     inputHtml += "<h4 class='media-heading'>" + comments[comment]['userName'] + "<small><i>  " + regTime + "</i></small></h4>";
                                     inputHtml += "<p>" + bbs2 + "</p>";
                                     inputHtml += "</div></div></hr>";
