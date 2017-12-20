@@ -56,7 +56,7 @@
     //세션이 생성되었는지 확인 후
     if(isset($_SESSION['myMemberSes'])){
       //나의 페이지로 이동
-      header("Location:./me.php");
+      header("Location:./memberPage.php");
     }
   }else{
       echo "<script>alert('아이디 혹은 비밀번호가 다릅니다.');location.href='/myservice/';</script>";
