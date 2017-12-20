@@ -169,7 +169,7 @@ function load_data()
 {
 var action = "Load";
 $.ajax({
-url:"action.php",
+url:"admin_product_action.php",
 method:"POST",
 data:{action:action},
 success:function(data){
@@ -207,7 +207,7 @@ return false;
 if(firstName != '' && lastName !='')
 {
 $.ajax({
-url:"action.php",
+url:"admin_product_action.php",
 method:"POST",
 data:new FormData(this),
 contentType:false,
@@ -237,7 +237,7 @@ $(document).on('click','.update',function(){
 var product_id = $(this).attr("p_id");
 var action = "Single";
 $.ajax({
-url:"action.php",
+url:"admin_product_action.php",
 method:"POST",
 data:{product_id:product_id,action:action},
 dataType:"json",
