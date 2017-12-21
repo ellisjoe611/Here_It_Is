@@ -6,19 +6,19 @@ class ProductCrud
 public $connect;
 private $host = "localhost";
 private $username = 'root';
-private $password = 'root';   //get yout OWN PASSWORD on sql, please!
+private $password = 'root';	//get yout OWN PASSWORD on sql, please!
 private $database = 'myservice';
 
 //객체가 생성될때 호출
 function __construct()
 {
-   $this -> database_connect();
+	$this -> database_connect();
 }
 
 // db 연결 함수
 public function database_connect()
 {
-   $this->connect = mysqli_connect($this -> host, $this-> username, $this->password, $this->database);
+	$this->connect = mysqli_connect($this -> host, $this-> username, $this->password, $this->database);
    mysqli_set_charset( $this->connect , "utf8" );
 }
 
