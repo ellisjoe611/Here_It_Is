@@ -66,35 +66,36 @@ if (mysqli_connect_errno()) {
 <!--/ Top Menu(상단고정) -->
 
 <!-- Content -->
-<!-- Page Header --> 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+<!-- Page Header -->
+<!-- advertiesment-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <p style="text-align: center;">
-            <img src="/myservice/images/coca.jpg" alt="Coca cola" style="width:1200px; height:500px;">
-        </p>
-      </div>
-
-      <div class="item">
-          <p style="text-align: center;">
-              <img src="/myservice/images/shake.jpg" alt="Chicago" style="width:1200px; height:500px;">
-          </p>
-      </div>
-    
-      <div class="item">
-          <p style="text-align: center;">
-              <img src="/myservice/images/ghana.jpg" alt="New york" style="width:1200px; height:500px;">
-          </p>
-      </div>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <p style="text-align: center;">
+              <img src="/myservice/images/event/1.jpg" alt="no1" style="width:85%; height:50%;">
+      </p>
     </div>
+
+    <div class="item">
+        <p style="text-align: center;">
+                <img src="/myservice/images/event/2.jpg" alt="no2" style="width:85%; height:50%;">
+        </p>
+    </div>
+
+    <div class="item">
+        <p style="text-align: center;">
+              <img src="/myservice/images/event/3.jpg" alt="no3" style="width:85%; height:50%;">
+        </p>
+    </div>
+  </div>
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -163,7 +164,7 @@ if (mysqli_connect_errno()) {
           <tbody>
           <tr bgcolor="lightblue" align="center">
           <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td> 좋아요</td>
+          <td>좋아요</td>
           <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
           </tr>
         </tbody>
@@ -238,7 +239,7 @@ if (mysqli_connect_errno()) {
       <!--차가워라 보여주기-->
        <?php
             $rown=0;
-            $CT = 20;
+            $CT = 30;
             $sql = "SELECT * FROM product where p_id like '$CT%' ";
             $result = $dbConnection->query($sql);
         for($i = 0; $i < $result->num_rows; $i++){
@@ -292,7 +293,7 @@ if (mysqli_connect_errno()) {
         <!--마시자으아 보여주기-->
          <?php
             $rown=0;
-            $CT = 20;
+            $CT = 40;
             $sql = "SELECT * FROM product where p_id like '$CT%' ";
             $result = $dbConnection->query($sql);
         for($i = 0; $i < $result->num_rows; $i++){
@@ -346,7 +347,7 @@ if (mysqli_connect_errno()) {
           <!--입고 소비하자 으란ㅇ머리-->
          <?php
             $rown=0;
-            $CT = 20;
+            $CT = 50;
             $sql = "SELECT * FROM product where p_id like '$CT%' ";
             $result = $dbConnection->query($sql);
         for($i = 0; $i < $result->num_rows; $i++){
@@ -394,7 +395,7 @@ if (mysqli_connect_errno()) {
      ?>
       </div>
     </div>
-	
+
 
 </div>
 <!-- Content -->
@@ -457,9 +458,8 @@ if (mysqli_connect_errno()) {
         <div id="container">
           <section id="introSite">
             <div id="siteComment">
-              내가 만드는<br />
-              첫 웹서비스에<br />
-              어서오세요.
+              HERE IT IS<br />
+              가장 편한 웹서비스 <br/>
             </div>
             <div id="signUpBtn">
               <p>가입하기</p>

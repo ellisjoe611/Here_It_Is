@@ -29,16 +29,29 @@ if (!isset($_SESSION['myMemberSes'])) {
 		<link href="css/sticky-footer-navbar.css" rel="stylesheet">
 		<!-- 예제에서 사용하기 위해 정의한 CSS -->
 		<link href="css/style.css" rel="stylesheet">
-		
+    <!-- 즐겨찾기 버튼-->
+    <script>
+      $(document).ready(function(){
+        $("#empty").click(function(){
+          $("#empty").hide();
+          $("#fill").show();
+        });
+        $("#fill").click(function(){
+          $("#fill").hide();
+          $("#empty").show();
+        });
+      });
+    </script>
+
     <script type="text/javascript" src="./js/json2.js"></script>
 		<!-- logout jquery-->
 		<script type="text/javascript" src="./js/me.js"></script>
-		
+
 
 	</head>
 	<body>
 
-		<!-- Top Menu(상단고정) -->
+    <!-- Top Menu(상단고정) -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -48,21 +61,19 @@ if (!isset($_SESSION['myMemberSes'])) {
 					<a class="navbar-brand" href="#">HERE IT IS</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="index.php">Home</a>
+						</li>
+								<li>
+									<a href="interestPage.php">My Interets products</a>
+								</li>
+					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-
-						<div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="myinterst.php">MyInterets product</a>
-                        <a href="#">Contact</a>
-						</div>
-						<li>
-							<span style="font-size:25px;cursor:pointer" onclick="openNav()"><span id="bell" class="glyphicon glyphicon-bell"><span class="badge">5</span></span></a>
-						</li>
 						<li>
 							<a href="#"  data-toggle="modal" data-target="#logoutModal"><span class="glyphicon glyphicon-log-out"> </span> Log out</a>
 						</li>
-
 					</ul>
 				</div>
 			</div>
@@ -71,192 +82,66 @@ if (!isset($_SESSION['myMemberSes'])) {
 
 		<!-- Content -->
 		<!-- Page Header -->
+    <!-- advertiesment-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <p style="text-align: center;">
-            <a href="#40101">
-                <img src="/myservice/images/coca.jpg" alt="Coca cola" style="width:1200px; height:500px;">
-            </a>
-        </p>
-      </div>
-
-      <div class="item">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
           <p style="text-align: center;">
-              <a href="#30401">
-                    <img src="/myservice/images/shake.jpg" alt="seulaim" style="width:1200px; height:500px;">
-                </a>
+                  <img src="/myservice/images/event/1.jpg" alt="no1" style="width:85%; height:50%;">
           </p>
-      </div>
-    
-      <div class="item">
-          <p style="text-align: center;">
-              <a href="#10101">
-                <img src="/myservice/images/ghana.jpg" alt="ghana" style="width:1200px; height:500px;">
-               </a>
-          </p>
-      </div>
-    </div>
+        </div>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+        <div class="item">
+            <p style="text-align: center;">
+                    <img src="/myservice/images/event/2.jpg" alt="no2" style="width:85%; height:50%;">
+            </p>
+        </div>
+
+        <div class="item">
+            <p style="text-align: center;">
+                  <img src="/myservice/images/event/3.jpg" alt="no3" style="width:85%; height:50%;">
+            </p>
+        </div>
+      </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
 		<!--/ Page Header -->
 
 		<div class="container">
 
-			<!--/ Tab -->
-			<div role="tabpanel">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class = "active">
-						<a href = "#ALL" aria-controls="ALL" role="tab" data-toggle="tab">ALL</a>
-					<li role="presentation" class = "active">
-						<a href = "#Snack" aria-controls="Snack" role="tab" data-toggle="tab">SNACK</a>
-					</li>
-					<li role="presentation">
-						<a href = "#Food" aria-controls="Food" role="tab" data-toggle="tab">FOOD</a>
-					</li>
-					<li role="presentation">
-						<a href = "#Ice" aria-controls="Ice" role="tab" data-toggle="tab">ICE CREAM</a>
-					</li>
-					<li role="presentation">
-						<a href = "#Drink" aria-controls="Drink" role="tab" data-toggle="tab">DRINK</a>
-					</li>
-					<li role="presentation">
-						<a href = "#Daily" aria-controls="DP" role="tab" data-toggle="tab">DAILY PRODUCT</a>
-					</li>
-				</ul>
-			</div>
-      <!--/ Page Header -->
-			<!--/ Tab -->
-  <div class="tab-content">
-    <div id="ALL" class="tab-pane fade in active">
-        <!--모두 출력하는곳-->
       <!--관심품목 출력-->
       <?php
-            $member=$_SESSION['myMemberSes']['myMemberID'];
+            $me=$_SESSION['myMemberSes']['myMemberID'];
             $rown=0;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member
+            $sql = "SELECT * FROM product where p_id IN(
+                SELECT contentsID FROM likes where $me=myMemberID
             ) ";
             $result = $dbConnection->query($sql);
-            $result2 = $dbConnection->query($sql2);
         for($i = 0; $i < $result->num_rows; $i++){;
           $product = $result->fetch_array(MYSQLI_ASSOC);
-          $recommand =$result2->fetch_array(MYSQLI_ASSOC);
           if($rown==0){
           echo '<div class="row">';
           }
           $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$member,$product['p_id']);
-          ?>
-    		<div class="col-md-3">
-          <h2>관심품목</h2>
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$product['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$product['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-        <!--추천품목 가즈아-->
-        <div class="col-md-3">
-          <h2>추천품목</h2>
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$recommand['p_id'] ?>" data-name="<?=$recommand['p_id'] ?>" data-whatever="<?=$recommand['productPhoto']?>"><img src="<?=$recommand['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$recommand['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$recommand['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$recommand['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$recommand['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$recommand['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-      <?php $rown++;
-            if ($rown == 2) {
-                echo '</div></br>';
-                $rown = 0;
-            }}
-     ?>
-      </div>
-    </div>
-
-      <div id="Snack" class="tab-pane fade in active">
-        <!--살찌는거 출력하는곳-->
-      <?php
-            $rown=0;
-            $member=$_SESSION['myMemberSes']['myMemberID'];
-            $rown=0;
-            $CT=10;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member and product like '$CT%'
-            )";           
-            $result = $dbConnection->query($sql);
-        for($i = 0; $i < $result->num_rows; $i++){
-          $product = $result->fetch_array(MYSQLI_ASSOC);
-          if($rown==0){
-          echo '<div class="row">';
-          }
-          $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$_SESSION['myMemberSes']['myMemberID'],$product['p_id']);
+          $alreadyLike = already_like($dbConnection,$me,$product['p_id']);
           ?>
     		<div class="col-md-3">
     			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
@@ -273,7 +158,7 @@ if (!isset($_SESSION['myMemberSes'])) {
             </tr>
             <tr bgcolor="white" align="center">
               <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
+              <td><?=(($product['p_num']==0) ? '재고없음' :$product['p_num']) ?></td>
             </tr>
           </tbody>
           </table>
@@ -297,249 +182,6 @@ if (!isset($_SESSION['myMemberSes'])) {
       </div>
     </div>
 
-
-      <div id="Food" class="tab-pane fade">
-
-
-        <!--먹는거 출력하는곳-->
-      <?php
-            $rown=0;
-            $member=$_SESSION['myMemberSes']['myMemberID'];
-            $rown=0;
-            $CT=20;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member and product like '$CT%'
-            )";           
-            $result = $dbConnection->query($sql);
-        for($i = 0; $i < $result->num_rows; $i++){
-          $product = $result->fetch_array(MYSQLI_ASSOC);
-          if($rown==0){
-          echo '<div class="row">';
-          }
-          $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$_SESSION['myMemberSes']['myMemberID'],$product['p_id']);
-          ?>
-    		<div class="col-md-3">
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$product['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$product['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-      <?php $rown++;
-            if ($rown == 4) {
-                echo '</div></br>';
-                $rown = 0;
-            }}
-     ?>
-      </div>
-    </div>
-
-
-     <div id="Ice" class="tab-pane fade">
-
-          <!--차가워라 보여주기-->
-      <?php
-            $rown=0;
-            $member=$_SESSION['myMemberSes']['myMemberID'];
-            $rown=0;
-            $CT=30;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member and product like '$CT%'
-            )";           
-            $result = $dbConnection->query($sql);
-        for($i = 0; $i < $result->num_rows; $i++){
-          $product = $result->fetch_array(MYSQLI_ASSOC);
-          if($rown==0){
-          echo '<div class="row">';
-          }
-          $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$_SESSION['myMemberSes']['myMemberID'],$product['p_id']);
-          ?>
-    		<div class="col-md-3">
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$product['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$product['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-      <?php $rown++;
-            if ($rown == 4) {
-                echo '</div></br>';
-                $rown = 0;
-            }}
-     ?>
-      </div>
-    </div>
-
-
-    <div id="Drink" class="tab-pane fade">
-
-     <!--마시자으아 보여주기-->
-      <?php
-            $rown=0;
-            $member=$_SESSION['myMemberSes']['myMemberID'];
-            $rown=0;
-            $CT=40;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member and product like '$CT%'
-            )";           
-            $result = $dbConnection->query($sql);
-        for($i = 0; $i < $result->num_rows; $i++){
-          $product = $result->fetch_array(MYSQLI_ASSOC);
-          if($rown==0){
-          echo '<div class="row">';
-          }
-          $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$_SESSION['myMemberSes']['myMemberID'],$product['p_id']);
-          ?>
-    		<div class="col-md-3">
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$product['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$product['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-      <?php $rown++;
-            if ($rown == 4) {
-                echo '</div></br>';
-                $rown = 0;
-            }}
-     ?>
-      </div>
-    </div>
-
-
-    <div id="Daily" class="tab-pane fade">
-    <!--입고 소비하자 으란ㅇ머리-->
-      <?php
-            $rown=0;
-            $member=$_SESSION['myMemberSes']['myMemberID'];
-            $rown=0;
-            $CT=50;
-            $sql = "SELECT * FROM product where p_id =(
-                SELECT product FROM plike where '$member'=member and product like '$CT%'
-            )";           
-            $result = $dbConnection->query($sql);
-        for($i = 0; $i < $result->num_rows; $i++){
-          $product = $result->fetch_array(MYSQLI_ASSOC);
-          if($rown==0){
-          echo '<div class="row">';
-          }
-          $count_like = count_content_like($dbConnection, $product['p_id']);
-          $alreadyLike = already_like($dbConnection,$_SESSION['myMemberSes']['myMemberID'],$product['p_id']);
-          ?>
-    		<div class="col-md-3">
-    			<a href="#" data-toggle="modal" data-target="#imageModal" id="<?=$product['p_id'] ?>" data-name="<?=$product['p_id'] ?>" data-whatever="<?=$product['productPhoto']?>"><img src="<?=$product['productPhoto']?>"
-            class="img-responsive img-thumbnail" alt="Responsive image"></a>
-          <table border=3 width="100%" bordercolor="lightblue"cellspacing="10">
-            <tbody>
-            <tr bgcolor="white" align="center">
-              <td>품명</td>
-              <td><?=$product['name'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>가격</td>
-              <td><?=$product['price'] ?></td>
-            </tr>
-            <tr bgcolor="white" align="center">
-              <td>재고</td>
-              <td><?=$product['p_num'] ?></td>
-            </tr>
-          </tbody>
-          </table>
-          <!-- 좋아요/싫어요/즐겨찾기 버튼-->
-          <table border=3 bordercolor="lightblue" width="100%" cellpadding="15">
-          <tbody>
-          <tr bgcolor="lightblue" align="center">
-          <td> <button type="button" class="btn btn-primary btn-sm likeBtn" id="likes<?=$product['p_id']?>"><span class="glyphicon glyphicon-thumbs-up" ></span></button></td>
-          <td><?=(($alreadyLike == 1) ? '취소하기' : '좋아요')?></td>
-          <td class="likes<?=$product['p_id']?>"><?=$count_like?></td>
-          </tr>
-        </tbody>
-        </table>
-        </div>
-      <?php $rown++;
-            if ($rown == 4) {
-                echo '</div></br>';
-                $rown = 0;
-            }}
-     ?>
-      </div>
-    </div>
-
-
-
-		</div>
 		<!-- Content -->
 
 		<!-- product Modal -->

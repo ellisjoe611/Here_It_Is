@@ -29,16 +29,16 @@ if (!isset($_SESSION['myMemberSes'])) {
 		<link href="css/sticky-footer-navbar.css" rel="stylesheet">
 		<!-- 예제에서 사용하기 위해 정의한 CSS -->
 		<link href="css/style.css" rel="stylesheet">
-		
+
     <script type="text/javascript" src="./js/json2.js"></script>
 		<!-- logout jquery-->
 		<script type="text/javascript" src="./js/me.js"></script>
-		
+
 
 	</head>
 	<body>
 
-		<!-- Top Menu(상단고정) -->
+    <!-- Top Menu(상단고정) -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -48,17 +48,16 @@ if (!isset($_SESSION['myMemberSes'])) {
 					<a class="navbar-brand" href="#">HERE IT IS</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="index.php">Home</a>
+						</li>
+								<li>
+									<a href="interestPage.php">My Interets products</a>
+								</li>
+					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-
-						<div id="mySidenav" class="sidenav">
-							<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-							<a href="myinterst.php">MyInterets product</a>
-							<a href="#">Contact</a>
-						</div>
-						<li>
-							<span style="font-size:25px;cursor:pointer" onclick="openNav()"><span id="bell" class="glyphicon glyphicon-bell"><span class="badge">5</span></span></a>
-						</li>
 						<li>
 							<a href="#"  data-toggle="modal" data-target="#logoutModal"><span class="glyphicon glyphicon-log-out"> </span> Log out</a>
 						</li>
@@ -67,56 +66,52 @@ if (!isset($_SESSION['myMemberSes'])) {
 				</div>
 			</div>
 		</nav>
-		<!--/ Top Menu(상단고정) -->
+    <!-- Top Menu(상단고정) -->
 
 		<!-- Content -->
 		<!-- Page Header -->
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    <!-- advertiesment-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <p style="text-align: center;">
-            <a href="#40101">
-                <img src="/myservice/images/coca.jpg" alt="Coca cola" style="width:1200px; height:500px;">
-            </a>
-        </p>
-      </div>
-
-      <div class="item">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
           <p style="text-align: center;">
-              <a href="#30401">
-                    <img src="/myservice/images/shake.jpg" alt="seulaim" style="width:1200px; height:500px;">
-                </a>
+                  <img src="/myservice/images/event/1.jpg" alt="no1" style="width:85%; height:50%;">
           </p>
-      </div>
-    
-      <div class="item">
-          <p style="text-align: center;">
-              <a href="#10101">
-                <img src="/myservice/images/ghana.jpg" alt="ghana" style="width:1200px; height:500px;">
-               </a>
-          </p>
-      </div>
-    </div>
+        </div>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+        <div class="item">
+            <p style="text-align: center;">
+                    <img src="/myservice/images/event/2.jpg" alt="no2" style="width:85%; height:50%;">
+            </p>
+        </div>
+
+        <div class="item">
+            <p style="text-align: center;">
+                  <img src="/myservice/images/event/3.jpg" alt="no3" style="width:85%; height:50%;">
+            </p>
+        </div>
+      </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
 		<!--/ Page Header -->
 
 		<div class="container">

@@ -48,46 +48,35 @@
 </head>
 <body>
 
-<!-- Top Menu(상단고정) -->
-<nav class="navbar navbar-default navbar-fixed-top">
+  <!-- Top Menu(상단고정) -->
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Company Name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="home.html">Home</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gallery <span
-                        class="caret"></span>
-                </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="photo.html">Photo</a></li>
-                        <li class="divider"></li>
-                        <li><a href="movie.html">Movie</a></li>
-                    </ul></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">HERE IT IS</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
 
-            <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
 
-              <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
-              </div>
+          <div id="mySidenav" class="sidenav">
+                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                      <a href="myinterst.php">MyInterets product</a>
+                      <a href="#">Contact</a>
+          </div>
+          <li>
+            <span style="font-size:25px;cursor:pointer" onclick="openNav()"><span id="bell" class="glyphicon glyphicon-bell"><span class="badge">5</span></span></a>
+          </li>
+          <li>
+            <a href="#"  data-toggle="modal" data-target="#logoutModal"><span class="glyphicon glyphicon-log-out"> </span> Log out</a>
+          </li>
 
-              <li><span style="font-size:25px;cursor:pointer" onclick="openNav()"><span id="bell" class="glyphicon glyphicon-bell"><span class="badge">5</span></span></a></li>
-              <li><a href="#"  data-toggle="modal" data-target="#logoutModal"><span class="glyphicon glyphicon-log-out"> </span> Log out</a></li>
-            </ul>
-        </div>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 <!--/ Top Menu(상단고정) -->
 
 <!-- Content -->
